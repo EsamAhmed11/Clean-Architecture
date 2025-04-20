@@ -1,0 +1,33 @@
+<div class="modal show d-block" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ isEdit ? 'Edit' : 'Add' }} Person</h5>
+          <button type="button" class="btn-close" (click)="onCancel()"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <input formControlName="name" class="form-control mb-2" placeholder="Name">
+            <div class="text-danger mb-2" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+              Name is required.
+            </div>
+  
+            <input formControlName="email" class="form-control mb-2" placeholder="Email">
+            <div class="text-danger mb-2" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+              Enter a valid email.
+            </div>
+  
+            <input formControlName="age" type="number" class="form-control mb-2" placeholder="Age">
+            <input formControlName="address" class="form-control mb-2" placeholder="Address">
+  
+            <div class="modal-footer">
+              <button type="submit" [disabled]="form.invalid"
+               class="btn btn-primary">{{ isEdit ? 'Save' : 'Add' }}</button>
+              <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

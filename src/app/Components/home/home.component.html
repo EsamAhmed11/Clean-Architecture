@@ -1,0 +1,38 @@
+
+   <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>Person List</h2>
+      <button class="btn btn-primary" (click)="openAdd()">+ Add Person</button>
+    </div>
+  
+    <table class="table table-bordered text-center align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>No</th><th>Name</th><th>Email</th><th>Age</th><th>Address</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of persons ;let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ person.name }}</td>
+          <td>{{ person.email }}</td>
+          <td>{{ person.age || 'N/A' }}</td>
+          <td>{{ person.address || 'N/A' }}</td>
+          <td>
+            <button class="btn btn-sm btn-info me-1" (click)="openEdit(person)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deletePerson(person.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Modal for Add/Edit -->
+    <app-person-form
+      *ngIf="showForm"
+      [person]="currentPerson"
+      [isEdit]="isEdit"
+      (submitForm)="handleSubmit($event)"
+      (cancelForm)="closeForm()">
+    </app-person-form>
+  </div>
+  
